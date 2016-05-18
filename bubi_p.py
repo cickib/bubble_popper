@@ -5,20 +5,20 @@ screen = curses.initscr()
 
 printable_num = list(c for c in range(48, 58))
 printable_num.append(27)
+print(printable_num)
+print(type(printable_num))
 
-rand_num = 0
+
 def newNum():
-    global rand_num
-    rand_num = random.randint(0, 9)
+    x = random.randint(0, 9)
     num_y = 0
     num_x = 0
-    screen.addstr(num_y, num_x, str(rand_num))
+    screen.addstr(num_y, num_x, str(x))
     #screen.move(10 ,10)
-    print(rand_num)
+    print(x)
 
 
 def popping():
-    global rand_num
     curses.noecho()
     curses.curs_set(0)
     begin_x = 0
@@ -31,31 +31,23 @@ def popping():
     win.nodelay(1)
     title = "Bubble Popper"
     win.addstr(0, (curses.COLS - len(title)) // 2, title) #ide rakja a feliratot, középre igazítva
-    num_y = 0
-    num_x =0
 
 
-    key = printable_num[]
+    key = 48
 
     while key != 27:
-        global rand_num
-        answer = key - 48
-        win.timeout(700)
+        win.timeout(300)
         event = win.getch()
         if event == printable_num[len(printable_num)-1]:
             break
-        elif rand_num == answer:
+        elif event == printable_num[0]:
             screen.addstr("The User Pressed Lower Case p")
-        #if rand_num == answer:
-        #    win.clear()
         #event = screen.getch()
 
         newNum()
-
         if event in printable_num:
             key = event
-            #if event
-            #print(answer) - csak megvizsg.
+            print(key - 48)
         #if event ==
 
     #key = 48
