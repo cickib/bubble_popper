@@ -1,6 +1,13 @@
 import curses
-from curses import wrapper
+import time
 
+
+printable_num = list(c for c in range(48, 58))
+print(printable_num)
+print(type(printable_num))
+
+
+"""
 #cursor is hidden
 curs_set(False) #nem műkszik
 
@@ -45,3 +52,4 @@ getch()
 
 
 #curses.endwin()
+"""
