@@ -34,7 +34,7 @@ def popping():
 
 
     key = 48
-
+    
     while key != 27:
         win.timeout(300)
         event = win.getch()
