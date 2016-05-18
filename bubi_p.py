@@ -1,12 +1,51 @@
 import curses
 import time
-
+stdscr = curses.initscr()
 
 printable_num = list(c for c in range(48, 58))
 print(printable_num)
 print(type(printable_num))
 
 
+def popping():
+    curses.noecho()
+    curses.curs_set(0)
+
+    begin_x = 0
+    begin_y = 0
+    height = 100
+    width = 300
+    win = curses.newwin(height, width, begin_y, begin_x)
+    win.keypad(1)
+
+    win.nodelay(1)
+    title = "Bubble Popper"
+    win.addstr(0, (curses.COLS - len(title)) // 2, title) #ide rakja a feliratot, középre igazítva
+
+
+    key = 48
+
+    while key != 27:            # not Esc is pressed
+    #        win.timeout(100)        # wait 0.1 sec
+        event = win.getch()
+        if event in printable_num:
+            key = event
+            print(key)
+
+
+    #key = 48
+#        snake = [[4,10]]
+#        title = ' Hello snake! '
+#        win.addstr(0, (curses.COLS - len(title)) // 2, title)
+
+    #while key != 27:            # not Esc is pressed
+    #        win.timeout(100)        # wait 0.1 sec
+
+    #        event = win.getch()     # get the code of pressed key (if nothing pressed, this returns -1)
+    #        if event in printable_num:
+    #            key = event
+
+popping()
 """
 #cursor is hidden
 curs_set(False) #nem műkszik
