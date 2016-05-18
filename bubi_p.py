@@ -35,16 +35,16 @@ def popping():
     num_x =0
 
 
-    key = 48
+    key = printable_num[]
 
     while key != 27:
         global rand_num
         answer = key - 48
         win.timeout(700)
-        key = win.getch()
-        if key == printable_num[len(printable_num)-1]:
+        event = win.getch()
+        if event == printable_num[len(printable_num)-1]:
             break
-        elif key == answer:
+        elif rand_num == answer:
             screen.addstr("The User Pressed Lower Case p")
         #if rand_num == answer:
         #    win.clear()
@@ -52,7 +52,7 @@ def popping():
 
         newNum()
 
-        if key in printable_num:
+        if event in printable_num:
             key = event
             #if event
             #print(answer) - csak megvizsg.
