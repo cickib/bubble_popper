@@ -3,9 +3,13 @@ import time
 import random
 from curses import wrapper
 import rocket
+import rocket_ops
+
+
 
 def main(screen):
-
+    ops = ["+", "-"]
+    muv = []
     key = 48
     score = 0
     count = 0
@@ -36,34 +40,41 @@ def main(screen):
         if score == 5:
             exit()
         win.refresh()
+
         if count % 10 == 0 :
-            x = random.randint(0, 9)
             num_y = 2
             num_x = random.randint(10, width-6)
-            win.addstr(num_y, num_x, str(rocket.rockets[x][0]))
-            win.addstr(num_y+1, num_x, str(rocket.rockets[x][1]))
-            win.addstr(num_y+2, num_x, str(rocket.rockets[x][2]))
-            while num_y != (height-4) or ((event-48) == x):
+            num_1 = random.randint(0, 9)
+            num_2 = random.randint(0, 9)
+
+            rocket_op = [num_1, ops[random.randint(0,1)], num_2]
+            for o in range(0, (len(rocket_op))):
+                muv.append(rocket_op[o])
+            muvs = (rocket_ops.muv[0], rocket_ops.muv[1], rocket_ops.muv[2])
+            win.addstr(num_y, num_x, str(rocket_ops.muv[0]))
+            win.addstr(num_y, num_x+1, str(rocket_ops.muv[1]))
+            win.addstr(num_y, num_x+2, str(rocket_ops.muv[2]))
+            while num_y != (height-4) or ((event-48) == muvs):
                 #win.clear()
                 win.refresh()
                 win.timeout(100)
                 num_y += 1
                 win.addstr(num_y-1, num_x, "     ")
-                win.addstr(num_y, num_x, str(rocket.rockets[x][0]))
-                win.addstr(num_y+1, num_x, str(rocket.rockets[x][1]))
-                win.addstr(num_y+2, num_x, str(rocket.rockets[x][2]))
+                win.addstr(num_y, num_x, str(rocket_ops.muv[0]))
+                win.addstr(num_y, num_x+1, str(rocket_ops.muv[1]))
+                win.addstr(num_y, num_x+2, str(rocket_ops.muv[2]))
                 event = win.getch()
                 if event == printable_num[len(printable_num)-1]:
                     exit()
-                if (event-48) == x:
+                if (event-48) == muvs:
                     score += 1
                     win.addstr(num_y, num_x, "     ")
-                    win.addstr(num_y+1, num_x, "     ")
-                    win.addstr(num_y+2, num_x, "     ")
+                    win.addstr(num_y, num_x+1, "     ")
+                    win.addstr(num_y, num_x+2, "     ")
                     break
                 win.addstr(num_y, num_x, "     ")
-                win.addstr(num_y+1, num_x, "     ")
-                win.addstr(num_y+2, num_x, "     ")
+                win.addstr(num_y, num_x+1, "     ")
+                win.addstr(num_y, num_x+2, "     ")
             continue
 
         win.timeout(100)

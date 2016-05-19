@@ -5,6 +5,9 @@ from curses import wrapper
 import rocket
 
 def main(screen):
+    #curses.has_colors()
+    #curses.start_color()
+
     curses.noecho()
     curses.curs_set(0)
     begin_x = 0
@@ -16,6 +19,7 @@ def main(screen):
     win.keypad(1)
     win.nodelay(1)
     title = "Bubble Popper"
+    #win.addstr(0, (width - len(title)) // 2, title, curses.color_pair(1)) #nem műkszik
     win.addstr(0, (width - len(title)) // 2, title) #nem műkszik
     win.refresh()
 
