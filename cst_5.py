@@ -9,8 +9,7 @@ def main(screen):
     level = 1
     insane_mode = False
     key = 48
-    score = 0
-    life = 3
+
     count = 0
     curses.noecho()
     curses.curs_set(0)
@@ -19,7 +18,6 @@ def main(screen):
     height = 30
     width = 80
     win = curses.newwin(height, width, begin_y, begin_x)
-    # win.refresh()
     win.keypad(1)
     win.border(0)
     win.nodelay(1)
@@ -33,18 +31,23 @@ def main(screen):
     printable_num = list(c for c in range(48, 58))
     printable_num.append(27)
 
+
+#init life
+    life = 3
     life_heart = "💙 "
     life_lost = "💔 "
-
-    #life_str = "Life:  " + str(life_heart*3)
     win.addstr(1, 5, "Life:  ")
     win.addstr(1, 12, life_heart)
     win.addstr(1, 14, life_heart)
     win.addstr(1, 16, life_heart)
 
+#init score
+    score = 0
+    score_str = "Score: " + str(score)
+    win.addstr(2, 5, score_str)
+
     while key != 27:
-        score_str = "Score: " + str(score)
-        win.addstr(2, 5, score_str)
+        win.addstr(2, 12, str(score))
         level_str = "Level " + str(level)
         if life == 2:
             win.addstr(1, 12, life_lost)
@@ -58,8 +61,8 @@ def main(screen):
             break
 
         if score == 0:
-            win.addstr(1, 44, "Press the right number for points.")
-            win.addstr(2, 44, "If you miss one, you lost a life.")
+            win.addstr(1, 43, "Press the right number for points.")
+            win.addstr(2, 43, "If you miss one, you lost a life.")
         elif score == 1:
             win.addstr(1, 43, (" "*35))
             win.addstr(2, 43, (" "*35))
