@@ -23,12 +23,11 @@ win_small.keypad(1)
 win_small.nodelay(1)
 
 
-
 printable_num = list(c for c in range(48, 58))
 printable_num.append(27)
 
 key = 48
-    
+
 count = 0
 
 while key != 27:
