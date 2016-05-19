@@ -28,23 +28,18 @@ printable_num = list(c for c in range(48, 58))
 printable_num.append(27)
 
 key = 48
-
+    
 count = 0
-event = win_small.getch()
 
 while key != 27:
-    num_y = 1
-    num_x = random.randint(10, 70)
-    x = random.randint(0, 2)
-    if count % 10 == 0 and (num_y >270 or (event-48) != x):
 
-
-
+    if count % 10 == 0 :
+        x = random.randint(0, 2)
+        num_y = 1
+        num_x = random.randint(10, 70)
         win_small.addstr(num_y, num_x, str(rocket.rockets[x][0]))
         win_small.addstr(num_y+1, num_x, str(rocket.rockets[x][1]))
         win_small.addstr(num_y+2, num_x, str(rocket.rockets[x][2]))
-        while num_y < 270:
-            num_y +=1
     #coord = [num_y, num_x)
     win_small.timeout(100)
     count += 1
