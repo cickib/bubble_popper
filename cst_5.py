@@ -8,6 +8,7 @@ def main(screen):
 
     key = 48
     score = 0
+    life = 3
     count = 0
     curses.noecho()
     curses.curs_set(0)
@@ -30,21 +31,27 @@ def main(screen):
     printable_num.append(27)
 
     while key != 27:
-
+        life_str = "Life:  " + str("💙 "*life)
+        win.addstr(1, 5, life_str)
         score_str = "Score: " + str(score)
-        win.addstr(1, 5, score_str)
+        win.addstr(2, 5, score_str)
+        if score == 0:
+            win.addstr(1, 45, "Press the right number for points.")
+            win.addstr(2, 45, "If you miss one, you lost a life.")
+        else:
+            win.addstr(1, 45, (" "*35))
+            win.addstr(2, 45, (" "*33))
         if score == 5:
             exit()
         win.refresh()
         if count % 10 == 0 :
             x = random.randint(0, 9)
-            num_y = 2
+            num_y = 3
             num_x = random.randint(10, width-6)
             win.addstr(num_y, num_x, str(rocket.rockets[x][0]))
             win.addstr(num_y+1, num_x, str(rocket.rockets[x][1]))
             win.addstr(num_y+2, num_x, str(rocket.rockets[x][2]))
             while num_y != (height-4) or ((event-48) == x):
-                #win.clear()
                 win.refresh()
                 win.timeout(100)
                 num_y += 1
@@ -64,17 +71,9 @@ def main(screen):
                 win.addstr(num_y, num_x, "     ")
                 win.addstr(num_y+1, num_x, "     ")
                 win.addstr(num_y+2, num_x, "     ")
+                life -= 1
             continue
-
         win.timeout(100)
         count += 1
-
-
-
-   #if event ==
-    # #        snake = [[4,10]]
-    # #        title = ' Hello snake! '
-    # #        win.addstr(0, (curses.COLS - len(title)) // 2, title)
-    #
 
 curses.wrapper(main)
