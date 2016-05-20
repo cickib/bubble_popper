@@ -1,7 +1,8 @@
 # Bubble Popper by Péter Szladovits & Bella Kocsis - very basic version
 # If the right number is pressed, the bubble pops, score is added.
 # After every 10 points, the player levels up, which speeds up the bubbles.
-# On the 5th level, insade mode gives 5x more points for 1 bubble popped.
+# On the 5th level, insade mode gives 5x more points for 1 bubble popped
+# and stops leveling up.
 # If the bubble reaches the bottom without being popped, player losts 1 life.
 # If esc pressed or player lost all lives, the game exits.
 
@@ -77,9 +78,9 @@ def main(screen ):
             win.addstr(2, 43, (" "*35))
             win.addstr(1, 70, level_str)
 # setting the current level and speed
-        if score >1 and score % 10 == 0:
+        if (score >1 and score < 50) and score % 10 == 0:
             level += 1
-            t_out -=50
+            t_out -= 50
         if t_out < 51:
             insane_mode = True
             win.addstr(2, 62, ("Insane mode: ON"))
