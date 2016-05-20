@@ -13,7 +13,7 @@ from curses import wrapper
 import bubbles
 
 # main function, it does the whole thing
-def main(screen ):
+def main(screen):
 #  initializing the window
     curses.noecho()
     curses.curs_set(0)
@@ -36,7 +36,7 @@ def main(screen ):
     insane_mode = False
     key = 48
     count = 0
-# possible player inputs
+# ASCII of possible player inputs
     printable_num = list(c for c in range(48, 58))
     printable_num.append(27)
 # initializing life
@@ -72,9 +72,9 @@ def main(screen ):
         elif score == 1:
             win.addstr(1, 43, (" "*35))
             win.addstr(2, 43, (" "*35))
-            win.addstr(1, 43, "It gets faster by leveling up.")
+            win.addstr(1, 48, "It gets faster by leveling up.")
         else:
-            win.addstr(1, 43, (" "*36))
+            win.addstr(1, 48, (" "*30))
             win.addstr(2, 43, (" "*35))
             win.addstr(1, 70, level_str)
 # setting the current level and speed
@@ -85,11 +85,11 @@ def main(screen ):
             insane_mode = True
             win.addstr(2, 62, ("Insane mode: ON"))
         win.refresh()
-# generating a random bubble, importing it from bubbles
+# generating a random bubble, importing it from bubbles - this is the game part
         if count % 10 == 0 :
             x = random.randint(0, 9)
             num_y = 4
-            num_x = random.randint(10, width-6)
+            num_x = random.randint(2, width-6)
             win.addstr(num_y, num_x, str(bubbles.bubble[x][0]))
             win.addstr(num_y+1, num_x, str(bubbles.bubble[x][1]))
             win.addstr(num_y+2, num_x, str(bubbles.bubble[x][2]))
